@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up & Login Page</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    .container {
+      width: 300px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+
+    #loginForm, #welcomeMessage {
+      display: none;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Sign Up</h2>
+    <div id="signupForm">
+      <input type="text" id="signupName" placeholder="Your Name">
+      <input type="text" id="signupUsername" placeholder="Username">
+      <input type="password" id="signupPassword" placeholder="Password">
+      <button onclick="signUp()">Sign Up</button>
+      <div class="error" id="signupError"></div>
+    </div>
+
+    <div id="loginForm">
+      <h2>Login</h2>
+      <input type="text" id="loginUsername" placeholder="Username">
+      <input type="password" id="loginPassword" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <div class="error" id="loginError"></div>
+    </div>
+
+    <div id="welcomeMessage">
+      <h2>Welcome, <span id="displayName"></span>!</h2>
+    </div>
+  </div>
+
+  <script>
+    let storedUser = {};
+
+    function signUp() {
+      const name = document.getElementById("signupName").value.trim();
+      const username = document.getElementById("signupUsername").value.trim();
+      const password = document.getElementById("signupPassword").value;
+
+      const error = document.getElementById("signupError");
+
+      if (!name || !username || !password) {
+        error.innerText = "All fields are required.";
+        return;
+      }
+
+      storedUser = { name, username, password };
+      error.innerText = "";
+      alert("Sign-up successful! Please log in.");
+
+      document.getElementById("signupForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+
+    function login() {
+      const username = document.getElementById("loginUsername").value.trim();
+      const password = document.getElementById("loginPassword").value;
+      const error = document.getElementById("loginError");
+
+      if (username === storedUser.username && password === storedUser.password) {
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("welcomeMessage").style.display = "block";
+        document.getElementById("displayName").innerText = storedUser.name;
+        error.innerText = "";
+      } else {
+        error.innerText = "Invalid username or password.";
+      }
+    }
+  </script>
+
+</body>
+</html>

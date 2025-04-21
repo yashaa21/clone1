@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="regForm" onsubmit="return displayDetails()">
+  <input type="text" id="fname" placeholder="First Name">
+  <div id="fnameError"></div>
+
+  <input type="text" id="lname" placeholder="Last Name">
+  <div id="lnameError"></div>
+
+  <input type="text" id="org" placeholder="Organization">
+  <div id="orgError"></div>
+
+  <label>Hobbies (comma-separated):</label>
+  <input type="text" id="hobbies" placeholder="e.g. Reading, Music, Coding">
+  <div id="hobbiesError"></div>
+
+  <textarea id="bio" placeholder="Short Bio"></textarea>
+
+  <button type="submit">Submit</button>
+</form>
+
+<div id="outputBox" style="display: none;">
+  <h3>Entered Details:</h3>
+  <p><strong>First Name:</strong> <span id="outFname"></span></p>
+  <p><strong>Last Name:</strong> <span id="outLname"></span></p>
+  <p><strong>Organization:</strong> <span id="outOrg"></span></p>
+  <p><strong>Hobbies:</strong> <span id="outHobbies"></span></p>
+  <p><strong>Bio:</strong> <span id="outBio"></span></p>
+</div>
+
+<script>
+  function displayDetails() {
+    let fname = document.getElementById("fname").value.trim();
+    let lname = document.getElementById("lname").value.trim();
+    let org = document.getElementById("org").value.trim();
+    let hobbies = document.getElementById("hobbies").value.trim();
+    let bio = document.getElementById("bio").value.trim();
+
+    let valid = true;
+
+    document.getElementById("fnameError").innerText = "";
+    document.getElementById("lnameError").innerText = "";
+    document.getElementById("orgError").innerText = "";
+    document.getElementById("hobbiesError").innerText = "";
+
+    if (fname === "") {
+      document.getElementById("fnameError").innerText = "First name is required.";
+      valid = false;
+    }
+    if (lname === "") {
+      document.getElementById("lnameError").innerText = "Last name is required.";
+      valid = false;
+    }
+    if (org === "") {
+      document.getElementById("orgError").innerText = "Organization is required.";
+      valid = false;
+    }
+    if (hobbies === "") {
+      document.getElementById("hobbiesError").innerText = "Hobbies are required.";
+      valid = false;
+    }
+
+    if (!valid) return false;
+
+    document.getElementById("outFname").innerText = fname;
+    document.getElementById("outLname").innerText = lname;
+    document.getElementById("outOrg").innerText = org;
+    document.getElementById("outHobbies").innerText = hobbies;
+    document.getElementById("outBio").innerText = bio;
+
+    document.getElementById("outputBox").style.display = "block";
+    return false;
+  }
+</script>
+
+</body>
+</html>

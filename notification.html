@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notification Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    .notify {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      z-index: 1000;
+    }
+
+    .notify.show {
+      opacity: 1;
+    }
+
+    .notify button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      float: right;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="showNotification()">Show Notification</button>
+
+  <div id="popup" class="notify">
+    <button onclick="closeNotification()">&times;</button>
+    This is a success notification!
+  </div>
+
+  <script>
+    function showNotification() {
+      const popup = document.getElementById("popup");
+      popup.classList.add("show");
+
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 3000);
+    }
+
+    function closeNotification() {
+      document.getElementById("popup").classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
