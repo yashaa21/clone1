@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gmail Registration Form</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    form { max-width: 300px; margin: auto; }
+    input { width: 100%; padding: 8px; margin: 6px 0; }
+    button { padding: 8px 16px; background: #4285F4; color: white; border: none; }
+  </style>
+</head>
+<body>
+
+<h2>Gmail Registration</h2>
+<form onsubmit="return validateForm()">
+  <input type="text" id="name" placeholder="Full Name"><br>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <input type="password" id="confirm" placeholder="Confirm Password"><br>
+  <button type="submit">Register</button>
+</form>
+
+<script>
+function validateForm() {
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value;
+  let confirm = document.getElementById("confirm").value;
+
+  if (name === "" || email === "" || pass === "" || confirm === "") {
+    alert("All fields are required!");
+    return false;
+  }
+  if (!email.includes("@gmail.com")) {
+    alert("Email must be a Gmail address!");
+    return false;
+  }
+  if (pass.length < 6) {
+    alert("Password must be at least 6 characters!");
+    return false;
+  }
+  if (pass !== confirm) {
+    alert("Passwords do not match!");
+    return false;
+  }
+  alert("Registration Successful!");
+  return true;
+}
+</script>
+
+</body>
+</html>
+
