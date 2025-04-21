@@ -1,0 +1,24 @@
+require 'mail'
+2.
+3. # Set up SMTP settings
+4. Mail.defaults do
+5. delivery_method :smtp, {
+6. :address => 'smtp.gmail.com',
+7. :port => 587,
+8. :user_name => 'example_email@gmail.com',
+9. :password => 'app_password',
+10. :authentication => :login,
+11. :enable_starttls_auto => true
+12. }
+13. end
+14.
+15. # Define email message
+16. message = Mail.new do
+17. from 'sender@gmail.com'
+18. to 'receiver@example.com'
+19. subject 'Hello from Ruby!'
+20. body 'This is a test email sent from Ruby.'
+21. end
+22.
+23. # Send email
+24. message.deliver!
